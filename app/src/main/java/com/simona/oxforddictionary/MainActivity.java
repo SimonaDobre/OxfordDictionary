@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -28,16 +29,6 @@ public class MainActivity extends AppCompatActivity {
     String searchedWordString = "";
     View.OnClickListener clickBtnListener;
     Handler handler;
-    private static String apiIDmain;
-    private static String apiKEYmain;
-
-    public static String getApiIDmain() {
-        return apiIDmain;
-    }
-
-    public static String getApiKEYmain() {
-        return apiKEYmain;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +36,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
+        speak();
+
     }
 
 
     private void initViews() {
-        apiIDmain = Api.getApiID();
-        apiKEYmain = Api.getApiKey();
         ActionBar ab = getSupportActionBar();
         ab.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#135D98")));
         searchBtn = findViewById(R.id.searchButton);
@@ -84,20 +75,24 @@ public class MainActivity extends AppCompatActivity {
         searchBtn.setOnClickListener(clickBtnListener);
         spearkerButton.setOnClickListener(clickBtnListener);
 
+        handler = new Handler(Looper.getMainLooper());
+    }
+
+    private void speak() {
         tts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
                     int rezultat = tts.setLanguage(Locale.ENGLISH);
                     if (rezultat == TextToSpeech.LANG_MISSING_DATA || rezultat == TextToSpeech.LANG_NOT_SUPPORTED) {
-//                        Log.i("TAG ", "don't know the pronunciation");
+                        Log.i("AICI ", "don't know the pronunciation");
                     } else {
                         spearkerButton.setEnabled(true);
+                        Log.i("AICI ", " ACTIVARE BUTON");
                     }
                 }
             }
         });
-        handler = new Handler(Looper.getMainLooper());
     }
 
     private void getResultsFromAPIbyJSON() {
@@ -122,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String urlConstruct() {
         searchedWordString = inputED.getText().toString().toLowerCase();
-        String a = "https://od-api.oxforddictionaries.com:443/api/v2/entries/en-us/" + searchedWordString + "?" + "&strictMatch=false";
+        String a = "https://od-api.oxforddictionaries.com:443/api/v2/entries/en-us/" + searchedWordString + "?&strictMatch=false";
         return a;
     }
 

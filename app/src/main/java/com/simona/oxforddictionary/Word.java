@@ -8,10 +8,10 @@ public class Word {
     private ArrayList<String> synonyms;
     private ArrayList<String> examples;
 
-    public Word(String word, ArrayList<String> definition, ArrayList<String> synonims, ArrayList<String> examples) {
+    public Word(String word, ArrayList<String> definition, ArrayList<String> synonymus, ArrayList<String> examples) {
         this.word = word;
         this.definition = definition;
-        this.synonyms = synonims;
+        this.synonyms = synonymus;
         this.examples = examples;
     }
 

@@ -29,13 +29,13 @@ public class JSONparse {
 
     private static String makeHttpRequestAndReadFromStream(URL myUrl) {
         String answer = "";
-        String appId = MainActivity.getApiIDmain();
-        String APP_KEY = MainActivity.getApiKEYmain();
+        String APP_ID = BuildConfig.APP_ID;
+        String APP_KEY = BuildConfig.APP_KEY;
         InputStream inputStream = null;
         HttpURLConnection httpURLConnection = null;
         try {
             httpURLConnection = (HttpURLConnection) myUrl.openConnection();
-            httpURLConnection.setRequestProperty("app_id", appId);
+            httpURLConnection.setRequestProperty("app_id", APP_ID);
             httpURLConnection.setRequestProperty("app_key", APP_KEY);
             inputStream = httpURLConnection.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
