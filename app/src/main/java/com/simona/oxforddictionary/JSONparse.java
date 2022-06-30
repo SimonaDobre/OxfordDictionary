@@ -124,14 +124,13 @@ public class JSONparse {
                                     JSONObject obiectExempleCurent = exampleJsonArray.getJSONObject(f);
                                     String exempluCurent = obiectExempleCurent.getString("text");
                                     examplesArray.add(exempluCurent);
-//                                    Log.i("resul=exempluCurr " + f, " = " + exempluCurent);
+//                                    Log.i("resul=exCurrent " + f, " = " + exempluCurent);
                                 }
                             } catch (JSONException e) {
                                 // is there a subsens in each ENTRIES
                                 try {
                                     JSONArray subsenses = currentSenses.getJSONArray("subsenses");
                                     for (int q = 0; q < subsenses.length(); q++) {
-                                        //Log.i("resul= forul cu g", "acum");
                                         JSONObject subsenseCurrent = subsenses.getJSONObject(q);
                                         // might not find EXAMPLES in each element of SUBSENSES
                                         try {
