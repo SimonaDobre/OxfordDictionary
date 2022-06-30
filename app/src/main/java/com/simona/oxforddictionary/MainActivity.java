@@ -85,10 +85,12 @@ public class MainActivity extends AppCompatActivity {
                 if (status == TextToSpeech.SUCCESS) {
                     int rezultat = tts.setLanguage(Locale.ENGLISH);
                     if (rezultat == TextToSpeech.LANG_MISSING_DATA || rezultat == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.i("AICI ", "don't know the pronunciation");
+//                        Log.i("AICI ", "don't know the pronunciation");
                     } else {
+                        // FUNCTIONEZA PE TELEFON
+                        // PE AVD NU FUNCTIONEAZA, DE CELE MAI MULTE ORI
+                        // NU SE ACTIVEAZA BUTONUL MICROFON
                         spearkerButton.setEnabled(true);
-                        Log.i("AICI ", " ACTIVARE BUTON");
                     }
                 }
             }

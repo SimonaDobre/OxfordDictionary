@@ -1,5 +1,7 @@
 package com.simona.oxforddictionary;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,9 +74,13 @@ public class JSONparse {
 
         try {
             JSONObject root = new JSONObject(x);
+            Log.v("AICI root lungime ", root.length()+ "");
             searchedWord = root.getString("word");
-            JSONArray results = root.getJSONArray("results");
 
+            JSONArray results = root.getJSONArray("results");
+            Log.v("AICI results = ", results.length() + "");
+            String a = results.get(0).toString();
+            Log.v("AICI result primul = ", a);
             for (int i = 0; i < results.length(); i++) {
                 JSONObject currentResult = results.getJSONObject(i);
                 JSONArray lexicalEntries = currentResult.getJSONArray("lexicalEntries");
